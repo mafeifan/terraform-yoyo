@@ -3,12 +3,24 @@ provider "aws" {
   profile = "default"
 }
 
+# 批量创建资源
+resource "aws_s3_bucket" "demo_buckets" {
+  count         = 10
+  bucket        = "demo-yoyo-${count.index + 1}"
+
+  tags = {
+    Name = "demo_bucket_${count.index + 1}"
+    Creator     = "yoyo"
+  }
+}
+
+
 resource "aws_s3_bucket" "example" {
-  bucket = "my-tf-test-bucket-001"
+  bucket = "test-bucket-yoyo-001"
 
   tags = {
     Name        = "My bucket"
     Environment = "Dev"
-    Creator     = "zhangsan"
+    Creator     = "lisi"
   }
 }
