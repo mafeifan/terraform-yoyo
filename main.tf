@@ -4,6 +4,7 @@ provider "aws" {
 }
 
 # 批量创建资源
+/*
 resource "aws_s3_bucket" "demo_buckets" {
   count         = 10
   bucket        = "demo-yoyo-${count.index + 1}"
@@ -13,7 +14,13 @@ resource "aws_s3_bucket" "demo_buckets" {
     Creator     = "yoyo"
   }
 }
+*/
 
+
+module "s3" {
+  source = "./modules/module-s3"
+  bucket_name = "zzzbbbnnn"
+}
 
 resource "aws_s3_bucket" "example" {
   bucket = "test-bucket-yoyo-001"
